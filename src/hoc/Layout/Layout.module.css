@@ -1,0 +1,36 @@
+.Layout {
+  min-height: 100%;
+  display: grid;
+  grid-template-rows: min-content 1fr min-content;
+  row-gap: 10px;
+}
+
+.Container {
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 10px;
+}
+
+@media (min-width: 576px) {
+  .Container {
+    max-width: 720px;
+  }
+}
+
+@media (min-width: 768px) {
+  .Container {
+    max-width: 960px;
+  }
+}
+
+@media (min-width: 992px) {
+  .Container {
+    max-width: 1140px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .Container {
+    max-width: 1320px;
+  }
+}

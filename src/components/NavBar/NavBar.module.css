@@ -1,0 +1,24 @@
+.NavBar ul {
+  display: flex;
+  align-items: center;
+}
+
+.NavBar ul li:last-child {
+  margin-left: auto;
+}
+
+.NavBar ul li:not(:last-child) {
+  margin-right: 10px;
+}
+
+.NavBar ul li {
+  padding: 10px 0;
+}
+
+.NavLink.active {
+  color: var(--lightGreen);
+}
+
+.NavLink:not(.active):hover {
+  color: var(--bright-blue);
+}

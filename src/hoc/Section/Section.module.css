@@ -1,0 +1,12 @@
+.Section {
+  position: relative;
+  padding: 10px;
+  border: 1px solid var(--light);
+  border-radius: var(--radius);
+}
+
+.ContentCenter {
+  display: grid;
+  align-items: center;
+  height: 100%;
+}

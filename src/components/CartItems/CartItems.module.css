@@ -1,0 +1,16 @@
+.CartItems {
+}
+
+.CartItems .title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.CartItems ul {
+  display: grid;
+}
+
+.CartItems button {
+  margin: 0;
+}
