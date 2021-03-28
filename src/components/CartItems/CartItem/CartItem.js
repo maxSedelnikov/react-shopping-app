@@ -8,6 +8,7 @@ import {
   fetchProductRemoveFromCart,
 } from '../../../axios/cart/requests';
 import { getPriceToFixed } from '../../../helpers/functions';
+import { showAlert } from '../../../store/actions/alert';
 import {
   removeProductFromCart,
   updateProductInCart,
@@ -26,14 +27,19 @@ const CartItem = ({ item }) => {
 
   const onRemoveHandler = async () => {
     // eslint-disable-next-line no-restricted-globals
-    const isConfirmed = confirm(
-      `Are you sure to delete ${name} from your order?`
-    );
+    if (!confirm(`Are you sure to delete ${name} from your order?`)) return;
 
-    if (isConfirmed) {
-      await fetchProductRemoveFromCart(id);
+    const response = await fetchProductRemoveFromCart(id);
 
+    if (!response.isError) {
       dispatch(removeProductFromCart(id));
+    } else {
+      dispatch(
+        showAlert({
+          alertType: 'error',
+          alertMessage: `Could not remove product from cart: ${response.errorMessage}`,
+        })
+      );
     }
   };
 
@@ -44,9 +50,20 @@ const CartItem = ({ item }) => {
       ...item,
       quantity: quantity + 1,
     });
-    const updatedProduct = response.data;
 
-    dispatch(updateProductInCart(updatedProduct));
+    if (!response.isError) {
+      const updatedProduct = response.data;
+
+      dispatch(updateProductInCart(updatedProduct));
+    } else {
+      dispatch(
+        showAlert({
+          alertType: 'error',
+          alertMessage: `Could not update product info: ${response.errorMessage}`,
+        })
+      );
+    }
+
     setQuantityLoader(false);
   };
 
@@ -60,9 +77,20 @@ const CartItem = ({ item }) => {
         ...item,
         quantity: quantity - 1,
       });
-      const updatedProduct = response.data;
 
-      dispatch(updateProductInCart(updatedProduct));
+      if (!response.isError) {
+        const updatedProduct = response.data;
+
+        dispatch(updateProductInCart(updatedProduct));
+      } else {
+        dispatch(
+          showAlert({
+            alertType: 'error',
+            alertMessage: `Could not update product info: ${response.errorMessage}`,
+          })
+        );
+      }
+
       setQuantityLoader(false);
     }
   };

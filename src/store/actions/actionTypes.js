@@ -7,6 +7,8 @@ const actionTypes = {
   UPDATE_CART_INFO: 'UPDATE_CART_INFO',
   START_LOADING: 'START_LOADING',
   STOP_LOADING: 'STOP_LOADING',
+  SHOW_ALERT: 'SHOW_ALERT',
+  HIDE_ALERT: 'HIDE_ALERT',
 };
 
 export default actionTypes;

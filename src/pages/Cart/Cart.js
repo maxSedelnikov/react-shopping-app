@@ -5,6 +5,7 @@ import CartItems from '../../components/CartItems/CartItems';
 import CartTotal from '../../components/CartTotal/CartTotal';
 import AddToCartForm from '../../components/Forms/AddToCartForm/AddToCartForm';
 import Section from '../../hoc/Section/Section';
+import { showAlert } from '../../store/actions/alert';
 import {
   loadCartItems,
   startLoading,
@@ -22,11 +23,19 @@ const Cart = () => {
     const fetchData = async () => {
       dispatch(startLoading());
 
-      const cartItems = await fetchCartItems();
-      const cartItemsReversed = cartItems.reverse();
+      const response = await fetchCartItems();
+      const cartItems = response.isError ? [] : response.reverse();
 
-      dispatch(loadCartItems(cartItemsReversed));
+      dispatch(loadCartItems(cartItems));
       dispatch(stopLoading());
+
+      if (response.isError)
+        dispatch(
+          showAlert({
+            alertType: 'error',
+            alertMessage: `Could not fetch cart items: ${response.errorMessage}`,
+          })
+        );
     };
 
     fetchData();

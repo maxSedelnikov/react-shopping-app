@@ -28,38 +28,48 @@ export const fetchCartItems = async () => {
 
     return inCart;
   } catch (error) {
-    throw Error(`Cannot fetch cart items ${error}`);
+    const errorInfo = { isError: true, errorMessage: error.message };
+
+    return errorInfo;
   }
 };
 
-export const fetchProductToCart = async (product) => {
+export const fetchProductToCart = (product) => {
   try {
-    return await axiosCart.post(withCredentials(), product);
+    return axiosCart.post(withCredentials(), product);
   } catch (error) {
-    throw Error(`Cannot fetch product to cart ${error}`);
+    const errorInfo = { isError: true, errorMessage: error.message };
+
+    return errorInfo;
   }
 };
 
-export const fetchProductRemoveFromCart = async (productId) => {
+export const fetchProductRemoveFromCart = (productId) => {
   try {
-    return await axiosCart.delete(withCredentials(productId));
+    return axiosCart.delete(withCredentials(productId));
   } catch (error) {
-    throw Error(`Cannot remove product from cart ${error}`);
+    const errorInfo = { isError: true, errorMessage: error.message };
+
+    return errorInfo;
   }
 };
 
-export const fetchPoductUpdate = async (product) => {
+export const fetchPoductUpdate = (product) => {
   try {
-    return await axiosCart.put(withCredentials(product.id), product);
+    return axiosCart.put(withCredentials(product.id), product);
   } catch (error) {
-    throw Error(`Cannot update product info ${error}`);
+    const errorInfo = { isError: true, errorMessage: error.message };
+
+    return errorInfo;
   }
 };
 
-export const fetchClearCart = async () => {
+export const fetchClearCart = () => {
   try {
-    return await axiosCart.delete(withCredentials(), {});
+    return axiosCart.delete(withCredentials(), {});
   } catch (error) {
-    throw Error(`Cannot clear cart ${error}`);
+    const errorInfo = { isError: true, errorMessage: error.message };
+
+    return errorInfo;
   }
 };

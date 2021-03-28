@@ -2,6 +2,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { ReactComponent as ClearCartIcon } from '../../assets/icons/cartIcons//clear.svg';
 import { fetchClearCart } from '../../axios/cart/requests';
+import { showAlert } from '../../store/actions/alert';
 import { clearCart } from '../../store/actions/cart';
 import EmptyCart from '../EmptyCart/EmptyCart';
 import Button from '../UI/Button/Button';
@@ -16,12 +17,19 @@ const CartItems = ({ items, loading }) => {
 
   const onClearCartHandler = async () => {
     // eslint-disable-next-line no-restricted-globals
-    const isConfirmed = confirm(`Are you sure to clear your cart completely?`);
+    if (!confirm(`Are you sure to clear your cart completely?`)) return;
 
-    if (isConfirmed) {
-      await fetchClearCart();
+    const response = await fetchClearCart();
 
+    if (!response.isError) {
       dispatch(clearCart());
+    } else {
+      dispatch(
+        showAlert({
+          alertType: 'error',
+          alertMessage: `Could not clear cart: ${response.errorMessage}`,
+        })
+      );
     }
   };
 

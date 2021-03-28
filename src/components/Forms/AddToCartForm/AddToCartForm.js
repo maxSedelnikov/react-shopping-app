@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { ReactComponent as AddToCartIcon } from '../../../assets/icons/cartIcons//add.svg';
 import { fetchProductToCart } from '../../../axios/cart/requests';
 import Section from '../../../hoc/Section/Section';
+import { showAlert } from '../../../store/actions/alert';
 import { addToCart } from '../../../store/actions/cart';
 import Button from '../../UI/Button/Button';
 import Input from '../../UI/Input/Input';
@@ -56,9 +57,19 @@ const AddToCartForm = () => {
     };
     const response = await fetchProductToCart(product);
 
-    product.id = response.data.name;
+    if (!response.isError) {
+      product.id = response.data.name;
 
-    dispatch(addToCart(product));
+      dispatch(addToCart(product));
+    } else {
+      dispatch(
+        showAlert({
+          alertType: 'error',
+          alertMessage: `Could not fetch product to cart: ${response.errorMessage}`,
+        })
+      );
+    }
+
     setControls({
       isFormValid: false,
       formControls: initialFormControls,

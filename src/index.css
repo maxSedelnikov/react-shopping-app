@@ -4,6 +4,8 @@
   --light: #f0f8ff;
   --lightGreen: #7befb2;
   --radius: 4px;
+  --error: tomato;
+  --warning: #ffd700;
 }
 
 body {
