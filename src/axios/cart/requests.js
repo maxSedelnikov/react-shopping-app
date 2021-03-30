@@ -13,63 +13,33 @@ const withCredentials = (productId) => {
 };
 
 export const fetchCartItems = async () => {
-  try {
-    const response = await axiosCart.get(withCredentials());
-    const inCart = [];
+  const response = await axiosCart.get(withCredentials());
+  const inCart = [];
 
-    if (!response.data) return inCart;
+  if (!response.data) return inCart;
 
-    Object.keys(response.data).forEach((key) => {
-      inCart.push({
-        id: key,
-        ...response.data[key],
-      });
+  Object.keys(response.data).forEach((key) => {
+    inCart.push({
+      id: key,
+      ...response.data[key],
     });
+  });
 
-    return inCart;
-  } catch (error) {
-    const errorInfo = { isError: true, errorMessage: error.message };
-
-    return errorInfo;
-  }
+  return inCart;
 };
 
 export const fetchProductToCart = (product) => {
-  try {
-    return axiosCart.post(withCredentials(), product);
-  } catch (error) {
-    const errorInfo = { isError: true, errorMessage: error.message };
-
-    return errorInfo;
-  }
+  return axiosCart.post(withCredentials(), product);
 };
 
 export const fetchProductRemoveFromCart = (productId) => {
-  try {
-    return axiosCart.delete(withCredentials(productId));
-  } catch (error) {
-    const errorInfo = { isError: true, errorMessage: error.message };
-
-    return errorInfo;
-  }
+  return axiosCart.delete(withCredentials(productId));
 };
 
 export const fetchPoductUpdate = (product) => {
-  try {
-    return axiosCart.put(withCredentials(product.id), product);
-  } catch (error) {
-    const errorInfo = { isError: true, errorMessage: error.message };
-
-    return errorInfo;
-  }
+  return axiosCart.put(withCredentials(product.id), product);
 };
 
 export const fetchClearCart = () => {
-  try {
-    return axiosCart.delete(withCredentials(), {});
-  } catch (error) {
-    const errorInfo = { isError: true, errorMessage: error.message };
-
-    return errorInfo;
-  }
+  return axiosCart.delete(withCredentials(), {});
 };

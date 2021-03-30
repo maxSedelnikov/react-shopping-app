@@ -1,13 +1,14 @@
 // validation functions to use
 
+const rgxpNumber = /[(0-9)+.?(0-9)*]+/gim;
+const rgxpImageUrl = /(https?:\/\/.*\.(?:png|jpg|gif))/i;
+
 export const validateNumber = (number) => {
-  const rgxp = /[(0-9)+.?(0-9)*]+/gim;
-  return rgxp.test(Number(number));
+  return rgxpNumber.test(Number(number));
 };
 
 export const validateImgUrl = (url) => {
-  const rgxp = /(https?:\/\/.*\.(?:png|jpg|gif))/i;
-  return rgxp.test(url);
+  return rgxpImageUrl.test(url);
 };
 
 export const validateNotEmptyText = (text) => {

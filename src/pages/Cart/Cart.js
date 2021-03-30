@@ -14,7 +14,7 @@ import {
 import classes from './Cart.module.css';
 
 const Cart = () => {
-  const { items, loading } = useSelector((state) => state.cart);
+  const { items, loading, isEmptyCartSet } = useSelector((state) => state.cart);
   const dispatch = useDispatch();
 
   useLayoutEffect(() => {
@@ -23,28 +23,34 @@ const Cart = () => {
     const fetchData = async () => {
       dispatch(startLoading());
 
-      const response = await fetchCartItems();
-      const cartItems = response.isError ? [] : response.reverse();
+      try {
+        const cartItems = await fetchCartItems();
+        const cartItemsReversed = cartItems.reverse();
 
-      dispatch(loadCartItems(cartItems));
-      dispatch(stopLoading());
-
-      if (response.isError)
+        dispatch(loadCartItems(cartItemsReversed));
+      } catch (error) {
         dispatch(
           showAlert({
             alertType: 'error',
-            alertMessage: `Could not fetch cart items: ${response.errorMessage}`,
+            alertMessage: `Could not fetch cart items: ${error.message}`,
           })
         );
+      }
+
+      dispatch(stopLoading());
     };
 
-    fetchData();
-  }, [dispatch]);
+    if (items.length === 0 && !isEmptyCartSet) fetchData();
+  }, [dispatch, items.length, isEmptyCartSet]);
 
   return (
     <div className={classes.Cart}>
       <Section>
-        <CartItems items={items} loading={loading} />
+        <CartItems
+          items={items}
+          loading={loading}
+          isEmptyCartSet={isEmptyCartSet}
+        />
       </Section>
       <aside>
         <div className={classes.sticky}>

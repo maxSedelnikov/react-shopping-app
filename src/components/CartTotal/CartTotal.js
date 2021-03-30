@@ -7,6 +7,7 @@ import {
   getPriceToFixed,
 } from '../../helpers/functions';
 import Section from '../../hoc/Section/Section';
+import { showAlert } from '../../store/actions/alert';
 import { updateCartInfo } from '../../store/actions/cart';
 import Button from '../UI/Button/Button';
 import classes from './CartTotal.module.css';
@@ -29,6 +30,15 @@ const CartTotal = ({ items }) => {
     dispatch(updateCartInfo(info));
   }, [dispatch, numberOfItems, totalSum]);
 
+  const finishOrder = () => {
+    dispatch(
+      showAlert({
+        alertType: 'success',
+        alertMessage: 'Success!',
+      })
+    );
+  };
+
   return (
     <Section>
       <div className={classes.CartTotal}>
@@ -41,7 +51,7 @@ const CartTotal = ({ items }) => {
           <strong>Total price :</strong>
           <span>{totalSumCut} $</span>
         </p>
-        <Button disabled={numberOfItems === 0}>
+        <Button disabled={numberOfItems === 0} onClick={finishOrder}>
           <span>finish order</span>
           <FinishOrderIcon width='20' height='20' />
         </Button>

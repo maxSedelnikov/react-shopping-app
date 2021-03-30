@@ -27,6 +27,13 @@
 .warning .Text {
   border: 1px solid var(--warning);
   background-color: var(--warning);
+  color: var(--blue);
+}
+
+.success .Text {
+  border: 1px solid var(--lightGreen);
+  background-color: var(--lightGreen);
+  color: var(--blue);
 }
 
 @media (max-width: 767px) {

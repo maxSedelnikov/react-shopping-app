@@ -9,6 +9,7 @@ const actionTypes = {
   STOP_LOADING: 'STOP_LOADING',
   SHOW_ALERT: 'SHOW_ALERT',
   HIDE_ALERT: 'HIDE_ALERT',
+  SET_EMPTY_CART: 'SET_EMPTY_CART',
 };
 
 export default actionTypes;

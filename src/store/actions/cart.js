@@ -2,6 +2,7 @@ import actionTypes from './actionTypes';
 
 const {
   GET_CART_ITEMS,
+  SET_EMPTY_CART,
   ADD_TO_CART,
   CLEAR_CART,
   UPDATE_PRODUCT_IN_CART,
@@ -15,6 +16,12 @@ export const loadCartItems = (items) => {
   return {
     type: GET_CART_ITEMS,
     payload: items,
+  };
+};
+
+export const setEmptyCart = () => {
+  return {
+    type: SET_EMPTY_CART,
   };
 };
 

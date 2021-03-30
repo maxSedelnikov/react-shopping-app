@@ -29,15 +29,21 @@ const CartItem = ({ item }) => {
     // eslint-disable-next-line no-restricted-globals
     if (!confirm(`Are you sure to delete ${name} from your order?`)) return;
 
-    const response = await fetchProductRemoveFromCart(id);
+    try {
+      await fetchProductRemoveFromCart(id);
 
-    if (!response.isError) {
       dispatch(removeProductFromCart(id));
-    } else {
+      dispatch(
+        showAlert({
+          alertType: 'warning',
+          alertMessage: 'Product was removed from your order',
+        })
+      );
+    } catch (error) {
       dispatch(
         showAlert({
           alertType: 'error',
-          alertMessage: `Could not remove product from cart: ${response.errorMessage}`,
+          alertMessage: `Could not remove product from cart: ${error.message}`,
         })
       );
     }
@@ -46,20 +52,20 @@ const CartItem = ({ item }) => {
   const onIncreaseQantityHandler = async () => {
     setQuantityLoader(true);
 
-    const response = await fetchPoductUpdate({
-      ...item,
-      quantity: quantity + 1,
-    });
+    try {
+      const response = await fetchPoductUpdate({
+        ...item,
+        quantity: quantity + 1,
+      });
 
-    if (!response.isError) {
       const updatedProduct = response.data;
 
       dispatch(updateProductInCart(updatedProduct));
-    } else {
+    } catch (error) {
       dispatch(
         showAlert({
           alertType: 'error',
-          alertMessage: `Could not update product info: ${response.errorMessage}`,
+          alertMessage: `Could not update product info: ${error.message}`,
         })
       );
     }
@@ -73,20 +79,20 @@ const CartItem = ({ item }) => {
     } else {
       setQuantityLoader(true);
 
-      const response = await fetchPoductUpdate({
-        ...item,
-        quantity: quantity - 1,
-      });
+      try {
+        const response = await fetchPoductUpdate({
+          ...item,
+          quantity: quantity - 1,
+        });
 
-      if (!response.isError) {
         const updatedProduct = response.data;
 
         dispatch(updateProductInCart(updatedProduct));
-      } else {
+      } catch (error) {
         dispatch(
           showAlert({
             alertType: 'error',
-            alertMessage: `Could not update product info: ${response.errorMessage}`,
+            alertMessage: `Could not update product info: ${error.message}`,
           })
         );
       }

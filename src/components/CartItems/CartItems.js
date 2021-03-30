@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { ReactComponent as ClearCartIcon } from '../../assets/icons/cartIcons//clear.svg';
 import { fetchClearCart } from '../../axios/cart/requests';
 import { showAlert } from '../../store/actions/alert';
-import { clearCart } from '../../store/actions/cart';
+import { clearCart, setEmptyCart } from '../../store/actions/cart';
 import EmptyCart from '../EmptyCart/EmptyCart';
 import Button from '../UI/Button/Button';
 import Loader from '../UI/Loader/Loader';
@@ -12,22 +12,33 @@ import classes from './CartItems.module.css';
 
 // displayng cart's content depending on cart products recieved from db
 
-const CartItems = ({ items, loading }) => {
+const CartItems = ({ items, loading, isEmptyCartSet }) => {
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (items.length === 0) dispatch(setEmptyCart());
+  }, [dispatch, items.length]);
 
   const onClearCartHandler = async () => {
     // eslint-disable-next-line no-restricted-globals
     if (!confirm(`Are you sure to clear your cart completely?`)) return;
 
-    const response = await fetchClearCart();
+    try {
+      await fetchClearCart();
 
-    if (!response.isError) {
       dispatch(clearCart());
-    } else {
+      dispatch(setEmptyCart());
+      dispatch(
+        showAlert({
+          alertType: 'warning',
+          alertMessage: 'Your cart was cleared',
+        })
+      );
+    } catch (error) {
       dispatch(
         showAlert({
           alertType: 'error',
-          alertMessage: `Could not clear cart: ${response.errorMessage}`,
+          alertMessage: `Could not clear cart: ${error.message}`,
         })
       );
     }
@@ -41,7 +52,7 @@ const CartItems = ({ items, loading }) => {
     );
   }
 
-  if (items.length === 0) {
+  if (items.length === 0 && isEmptyCartSet) {
     return <EmptyCart />;
   }
 

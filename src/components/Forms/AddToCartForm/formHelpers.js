@@ -12,7 +12,7 @@ export const initialFormControls = {
     value: '',
     type: 'text',
     label: 'Product name',
-    errorMessage: 'Enter valid product name',
+    errorMessage: 'The name should be longer',
     valid: false,
     touched: false,
     validation: {
@@ -24,7 +24,7 @@ export const initialFormControls = {
     value: '',
     type: 'text',
     label: 'Product image url',
-    errorMessage: 'Enter valid image url',
+    errorMessage: 'The url should lead to the image',
     valid: false,
     touched: false,
     validation: {
@@ -36,7 +36,7 @@ export const initialFormControls = {
     value: '',
     type: 'number',
     label: 'Product price',
-    errorMessage: 'Enter valid price number',
+    errorMessage: 'The price should be numeric',
     valid: false,
     touched: false,
     validation: {
@@ -53,23 +53,13 @@ export const validateControl = (value, validation) => {
     return false;
   }
 
-  let isValid = true;
+  let isValid = !validation.required || validateNotEmptyText(value);
 
-  if (validation.required) {
-    isValid = validateNotEmptyText(value) && isValid;
-  }
-
-  if (validation.number) {
-    isValid = validateNumber(value) && isValid;
-  }
-
-  if (validation.imgUrl) {
-    isValid = validateImgUrl(value) && isValid;
-  }
-
-  if (validation.minLength) {
-    isValid = validateMinLength(value, validation.minLength) && isValid;
-  }
+  isValid = isValid && (!validation.number || validateNumber(value));
+  isValid = isValid && (!validation.imgUrl || validateImgUrl(value));
+  isValid =
+    isValid &&
+    (!validation.minLength || validateMinLength(value, validation.minLength));
 
   return isValid;
 };

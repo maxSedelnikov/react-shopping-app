@@ -55,17 +55,24 @@ const AddToCartForm = () => {
       price: +controls.formControls.productPrice.value,
       quantity: 1,
     };
-    const response = await fetchProductToCart(product);
 
-    if (!response.isError) {
+    try {
+      const response = await fetchProductToCart(product);
+
       product.id = response.data.name;
 
       dispatch(addToCart(product));
-    } else {
+      dispatch(
+        showAlert({
+          alertType: 'success',
+          alertMessage: 'Product added to your order',
+        })
+      );
+    } catch (error) {
       dispatch(
         showAlert({
           alertType: 'error',
-          alertMessage: `Could not fetch product to cart: ${response.errorMessage}`,
+          alertMessage: `Could not fetch product to cart: ${error.message}`,
         })
       );
     }

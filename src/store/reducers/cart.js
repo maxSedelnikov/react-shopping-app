@@ -2,6 +2,7 @@ import actionTypes from '../actions/actionTypes';
 
 const {
   GET_CART_ITEMS,
+  SET_EMPTY_CART,
   ADD_TO_CART,
   REMOVE_FROM_CART,
   UPDATE_PRODUCT_IN_CART,
@@ -13,6 +14,7 @@ const {
 
 const initialState = {
   items: [],
+  isEmptyCartSet: false,
   numberOfItems: 0,
   totalSum: 0,
   loading: false,
@@ -24,6 +26,13 @@ const cartReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         items: [...payload],
+      };
+    }
+
+    case SET_EMPTY_CART: {
+      return {
+        ...state,
+        isEmptyCartSet: true,
       };
     }
 
@@ -54,6 +63,7 @@ const cartReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         items: [],
+        isEmptyCartSet: true,
       };
     }
 
