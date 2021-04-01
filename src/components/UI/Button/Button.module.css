@@ -1,0 +1,65 @@
+.Button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 20px;
+  border-radius: 4px;
+  border: 1px solid var(--light);
+  background: transparent;
+  color: #000;
+  font-weight: bold;
+  font-size: 12px;
+  cursor: pointer;
+  color: aliceblue;
+}
+
+.Button:disabled {
+  background-color: #ccc;
+  color: #000;
+  cursor: not-allowed;
+}
+
+.Button:not(.icon):not(.iconAbsolute):hover:not(:disabled) {
+  border-color: var(--lightGreen);
+  color: var(--lightGreen);
+}
+
+.Button.icon {
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  background: transparent;
+}
+
+.Button svg {
+  fill: var(--light);
+}
+
+.Button:not(:disabled):hover svg g,
+.Button:not(:disabled):hover svg path {
+  fill: var(--lightGreen);
+}
+
+.Button.iconAbsolute {
+  position: absolute;
+  top: 10px;
+  right: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  background: transparent;
+}
+
+.Button span + img,
+.Button span + svg {
+  margin-left: 10px;
+}
+
+.Button img {
+  width: 20px;
+  height: 20px;
+}

@@ -1,0 +1,16 @@
+.CartTotal {
+  display: grid;
+  height: 100%;
+  row-gap: 10px;
+  text-align: left;
+}
+
+.CartTotal p {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.CartTotal button {
+  justify-self: center;
+}

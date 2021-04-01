@@ -1,0 +1,24 @@
+.AddToCartForm {
+  display: grid;
+  row-gap: 10px;
+}
+
+.AddToCartForm h3 {
+  text-align: left;
+}
+
+.AddToCartForm label {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.AddToCartForm input {
+  width: 100%;
+  padding: 5px;
+  margin-top: 5px;
+}
+
+.AddToCartForm button {
+  justify-self: center;
+}

@@ -1,0 +1,16 @@
+.Footer {
+}
+
+.ContactsList {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.ContactsList li {
+  padding: 10px 0;
+}
+
+.ContactsList li a:hover {
+  color: var(--bright-blue);
+}
