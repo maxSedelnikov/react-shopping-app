@@ -8,7 +8,7 @@ You can add/remove/update products in your cart
 
 This is a documentaion about the app system of design and structure
 
-[Documentation](https://github.com/maxSedelnikov.github.io)
+[Documentation](https://maxsedelnikov.github.io/react-shopping-app/)
 
 ### About Documention
 
