@@ -1,6 +1,14 @@
 import React from 'react';
 import classes from './Footer.module.css';
 
+/**
+ * Footer component with contacts
+ * @category Application
+ * @subcategory Elements
+ * @component Footer
+ * @returns {jsx} contacts with links
+ */
+
 const Footer = () => {
   return (
     <section className={classes.Contacts}>

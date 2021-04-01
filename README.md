@@ -1,70 +1,64 @@
-# Getting Started with Create React App
+## Intro
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is a test react shopping application.
 
-## Available Scripts
+You can add/remove/update products in your cart
 
-In the project directory, you can run:
+## Information
 
-### `yarn start`
+This is a documentaion about the app system of design and structure
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+[Documentation](https://github.com/maxSedelnikov.github.io)
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### About Documention
 
-### `yarn test`
+It was created with
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- [JSDoc](https://devdocs.io/jsdoc/)
+- [better-docs](https://github.com/SoftwareBrothers/better-docs)
 
-### `yarn build`
+#### What it contains
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1. API
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- Cart
+  - ({@link module:Requests})
+  - ({@link module:Setup})
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+2. Application
 
-### `yarn eject`
+- Components/Pages
+  - ({@link About})
+  - ({@link Home})
+  - ({@link Cart})
+- Components/Elements
+- ({@link Alert})
+- ({@link CartItems})
+- ({@link CartItem})
+- ({@link CartTotal})
+- ({@link EmptyCart})
+- ({@link Footer})
+- ({@link NavBar})
+- ({@link AddToCartForm})
+- Components/Entry
+- ({@link App})
+- Components/UI
+- ({@link Button})
+- ({@link Input})
+- ({@link Loader})
+- ({@link QuantityLoader})
+- Components/HOC
+  - ({@link Layout})
+  - ({@link Section})
+- Global
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+3. Store
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- Actions
+  - ({@link module:ActionTypes})
+  - ({@link module:AlertActions})
+  - ({@link module:CartActions})
+- Reducers
+  - ({@link module:AlertReducer})
+  - ({@link module:CartReducer})
+  - ({@link module:RootReducer})

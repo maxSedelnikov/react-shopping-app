@@ -17,13 +17,33 @@ import Button from '../../UI/Button/Button';
 import QuantityLoader from '../../UI/QuantityLoader/QuantityLoader';
 import classes from './CartItem.module.css';
 
-// displaying separate cart items
+/**
+ * Component for one cart item
+ * @category Application
+ * @subcategory Elements
+ * @component CartItem
+ * @param {object} item
+ * @returns {jsx} layout for ine cart product added
+ * @see Button
+ * @see QuantityLoader
+ * @see getPriceToFixed
+ */
 
 const CartItem = ({ item }) => {
   const { id, name, price, pictureUrl, quantity } = item;
   const modPrice = getPriceToFixed(price, 2);
   const [qantityLoader, setQuantityLoader] = useState(false);
   const dispatch = useDispatch();
+
+  /**
+   * Remove item handler
+   * @memberof CartItem
+   * @inner
+   * @function onRemoveHandler
+   * @see module:Requests~fetchProductRemoveFromCart
+   * @see module:CartActions~removeProductFromCart
+   * @see module:AlertActions~showAlert
+   */
 
   const onRemoveHandler = async () => {
     // eslint-disable-next-line no-restricted-globals
@@ -49,6 +69,16 @@ const CartItem = ({ item }) => {
     }
   };
 
+  /**
+   * Increase item's quantity handler
+   * @memberof CartItem
+   * @inner
+   * @function onIncreaseQantityHandler
+   * @see module:Requests~fetchPoductUpdate
+   * @see module:CartActions~updateProductInCart
+   * @see module:AlertActions~showAlert
+   */
+
   const onIncreaseQantityHandler = async () => {
     setQuantityLoader(true);
 
@@ -72,6 +102,16 @@ const CartItem = ({ item }) => {
 
     setQuantityLoader(false);
   };
+
+  /**
+   * Decrease item's quantity handler
+   * @memberof CartItem
+   * @inner
+   * @function onDecreaseQantityHandler
+   * @see module:Requests~fetchPoductUpdate
+   * @see module:CartActions~updateProductInCart
+   * @see module:AlertActions~showAlert
+   */
 
   const onDecreaseQantityHandler = async () => {
     if (quantity === 1) {

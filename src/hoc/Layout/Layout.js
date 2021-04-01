@@ -5,6 +5,17 @@ import classes from './Layout.module.css';
 
 // layout wrapper for main companents
 
+/**
+ * Higher order component used as a wrapper for main components
+ * @category Application
+ * @subcategory Hoc
+ * @component Layout
+ * @param {Array} children - passed components
+ * @returns {jsx} Styled page structure with navigation, footer and children components passed
+ * @see NavBar
+ * @see Footer
+ */
+
 const Layout = ({ children }) => {
   return (
     <div className={classes.Layout}>

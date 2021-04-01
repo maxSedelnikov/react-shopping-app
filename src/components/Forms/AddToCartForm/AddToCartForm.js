@@ -10,21 +10,46 @@ import Input from '../../UI/Input/Input';
 import classes from './AddToCartForm.module.css';
 import { initialFormControls, validateControl } from './formHelpers';
 
-// form to add products to the cart
+/**
+ * A form for adding new products to the cart
+ * @category Application
+ * @subcategory Elements
+ * @component AddToCartForm
+ * @returns {jsx} add to cart form
+ * @see Input
+ * @see Section
+ * @see Button
+ */
 
 const AddToCartForm = () => {
   const dispatch = useDispatch();
 
   // defining local state for form's values
-
   const [controls, setControls] = useState({
     isFormValid: false,
     formControls: initialFormControls,
   });
 
+  /**
+   * Submit handler
+   * @memberof AddToCartForm
+   * @inner
+   * @function submitHandler
+   * @param {object} event
+   */
+
   const submitHandler = (event) => {
     event.preventDefault();
   };
+
+  /**
+   * Inout change handler + validation
+   * @memberof submitHandler
+   * @inner
+   * @function onChangeHandler
+   * @param {object} event
+   * @param {string} controlName
+   */
 
   const onChangeHandler = (event, controlName) => {
     // getting targeted form controls from the state
@@ -46,6 +71,16 @@ const AddToCartForm = () => {
     // updating form's local state
     setControls({ formControls, isFormValid });
   };
+
+  /**
+   * Create product handler
+   * @memberof AddToCartForm
+   * @inner
+   * @function createProductHandler
+   * @see module:Requests~fetchProductToCart
+   * @see module:CartActions~addToCart
+   * @see module:AlertActions~showAlert
+   */
 
   const createProductHandler = async () => {
     // creating a product by getting form's values from the local state
@@ -82,6 +117,14 @@ const AddToCartForm = () => {
       formControls: initialFormControls,
     });
   };
+
+  /**
+   * Rendering all needed inputs
+   * @memberof AddToCartForm
+   * @inner
+   * @function renderInputs
+   * @returns {jsx} inputs
+   */
 
   const renderInputs = () => {
     return Object.keys(controls.formControls).map((controlName, index) => {

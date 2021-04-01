@@ -5,7 +5,12 @@ import {
   validateNumber,
 } from '../validators';
 
-// default form controls set up
+/**
+ * default form controls set up
+ * @memberof AddToCartForm
+ * @inner
+ * @type {object}
+ */
 
 export const initialFormControls = {
   productName: {
@@ -46,7 +51,19 @@ export const initialFormControls = {
   },
 };
 
-// validation rules setting for adding to cart form
+/**
+ * Validating inputs according to required rules
+ * @memberof AddToCartForm
+ * @inner
+ * @function validateControl
+ * @param {any} value input value
+ * @param {object} validation validation rules for current input
+ * @returns {boolean} valid status
+ * @see validateNotEmptyText
+ * @see validateNumber
+ * @see validateImgUrl
+ * @see validateMinLength
+ */
 
 export const validateControl = (value, validation) => {
   if (!value) {

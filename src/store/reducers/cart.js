@@ -1,3 +1,12 @@
+/**
+ * A reducer for cart state
+ * @category Store
+ * @subcategory Reducers
+ * @module CartReducer
+ * @see module:CartActions
+ * @see module:ActionTypes
+ */
+
 import actionTypes from '../actions/actionTypes';
 
 const {
@@ -19,6 +28,15 @@ const initialState = {
   totalSum: 0,
   loading: false,
 };
+
+/**
+ * Cart reducer for store
+ * @function cartReducer
+ * @param {object} state current state
+ * @param {string} type action type
+ * @param {any} payload values to update the current state
+ * @returns {object} current state
+ */
 
 const cartReducer = (state = initialState, { type, payload }) => {
   switch (type) {
