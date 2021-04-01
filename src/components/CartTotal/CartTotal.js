@@ -12,13 +12,33 @@ import { updateCartInfo } from '../../store/actions/cart';
 import Button from '../UI/Button/Button';
 import classes from './CartTotal.module.css';
 
-// displaying cart info
+/**
+ * @category Application
+ * @subcategory Elements
+ * @component CartTotal
+ * @param {array} items cart items
+ * @returns {jsx} information about yser's order
+ * @see Section
+ * @see Button
+ * @see getNumberOfCartItems
+ * @see getCartSum
+ * @see getPriceToFixed
+ */
 
 const CartTotal = ({ items }) => {
   const numberOfItems = getNumberOfCartItems(items);
   const totalSum = getCartSum(items);
   const totalSumCut = getPriceToFixed(totalSum, 2);
   const dispatch = useDispatch();
+
+  /**
+   * Using react hook useEffect to render the current info about user's order
+   * @memberof CartTotal
+   * @inner
+   * @function useEffect
+   * @see module:CartActions~updateCartInfo
+   * @see module:AlertActions~showAlert
+   */
 
   useEffect(() => {
     // updating cart store with carts info

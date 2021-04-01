@@ -2,6 +2,15 @@ import React from 'react';
 import Section from '../../hoc/Section/Section';
 import classes from './Home.module.css';
 
+/**
+ * A component for Home's page content
+ * @category Application
+ * @subcategory Pages
+ * @component Home
+ * @returns {jsx} Home page content
+ * @see Section
+ */
+
 const Home = () => {
   return (
     <Section type='ContentCenter'>

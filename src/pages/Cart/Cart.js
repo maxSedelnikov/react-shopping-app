@@ -13,13 +13,35 @@ import {
 } from '../../store/actions/cart';
 import classes from './Cart.module.css';
 
+/**
+ * A component for user's cart items
+ * @category Application
+ * @subcategory Pages
+ * @component Cart
+ * @returns {jsx} - Cart page content with cart info and form to add new items
+ * @see Section
+ * @see CartItems
+ * @see CartTotal
+ * @see AddToCartForm
+ */
+
 const Cart = () => {
   const { items, loading, isEmptyCartSet } = useSelector((state) => state.cart);
   const dispatch = useDispatch();
 
-  useLayoutEffect(() => {
-    // loading user's cart data from db and setting it up to the store
+  /**
+   * Using react hook useLayoutEffect to fetch user's cart data and render it
+   * @memberof Cart
+   * @function useLayoutEffect
+   * @inner
+   * @see module:Requests~fetchCartItems
+   * @see module:CartActions~startLoading
+   * @see module:CartActions~stopLoading
+   * @see module:CartActions~loadCartItems
+   * @see module:AlertActions~showAlert
+   */
 
+  useLayoutEffect(() => {
     const fetchData = async () => {
       dispatch(startLoading());
 
@@ -39,6 +61,9 @@ const Cart = () => {
 
       dispatch(stopLoading());
     };
+
+    // start fetching data only if it is the first visit to the cart
+    // if we loaded data before or the cart was cleared then use store to handle it
 
     if (items.length === 0 && !isEmptyCartSet) fetchData();
   }, [dispatch, items.length, isEmptyCartSet]);

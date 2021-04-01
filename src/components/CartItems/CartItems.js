@@ -10,14 +10,46 @@ import Loader from '../UI/Loader/Loader';
 import CartItem from './CartItem/CartItem';
 import classes from './CartItems.module.css';
 
-// displayng cart's content depending on cart products recieved from db
+/**
+ * Component for rendering cart products recieved for user
+ * @category Application
+ * @subcategory Elements
+ * @component CartItems
+ * @param {array} items - cart items added
+ * @param {boolean} loading - status of loading the cart
+ * @param {boolean} isEmptyCartSet - status of empty cart set
+ * @returns {jsx} cart content
+ * @see Loader
+ * @see EmptyCart
+ * @see Button
+ * @see CartItem
+ */
 
 const CartItems = ({ items, loading, isEmptyCartSet }) => {
   const dispatch = useDispatch();
 
+  /**
+   * Using react hook useEffect to set empty cart if the cart is empty
+   * @memberof CartItems
+   * @inner
+   * @function useEffect
+   * @see module:CartActions~setEmptyCart
+   */
+
   useEffect(() => {
     if (items.length === 0) dispatch(setEmptyCart());
   }, [dispatch, items.length]);
+
+  /**
+   * Clear cart handler
+   * @memberof CartItems
+   * @inner
+   * @function onClearCartHandler
+   * @see module:CartActions~setEmptyCart
+   * @see module:CartActions~clearCart
+   * @see module:AlertActions~showAlert
+   * @see module:Requests~fetchClearCart
+   */
 
   const onClearCartHandler = async () => {
     // eslint-disable-next-line no-restricted-globals

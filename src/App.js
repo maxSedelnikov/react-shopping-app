@@ -9,9 +9,26 @@ import Home from './pages/Home/Home';
 
 const { REACT_APP_USER_STORAGE_KEY } = process.env;
 
-function App() {
+/**
+ * A container for the whole app
+ * @category Application
+ * @subcategory Entry
+ * @component App
+ * @returns {jsx} The app's layout with routes
+ * @see Layout
+ * @see Alert
+ */
+
+const App = () => {
+  /**
+   * Using react hook useEffect to check if the user has a uniq id and set it if not before rendering the app
+   * @memberof App
+   * @function useEffect
+   * @inner
+   * @see generateUniqId
+   */
+
   useEffect(() => {
-    // setting up uniq user id
     if (!window.localStorage.getItem(REACT_APP_USER_STORAGE_KEY)) {
       const userId = generateUniqId();
 
@@ -19,7 +36,13 @@ function App() {
     }
   }, []);
 
-  // defining app routes
+  /**
+   * Availible routes in the app
+   * @inner routes
+   * @see About
+   * @see Cart
+   * @see Home
+   */
 
   const routes = (
     <Switch>
@@ -36,6 +59,6 @@ function App() {
       <Layout>{routes}</Layout>
     </BrowserRouter>
   );
-}
+};
 
 export default App;

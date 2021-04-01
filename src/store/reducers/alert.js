@@ -1,3 +1,12 @@
+/**
+ * A reducer for alert state
+ * @category Store
+ * @subcategory Reducers
+ * @module AlertReducer
+ * @see module:AlertActions
+ * @see module:ActionTypes
+ */
+
 import actionTypes from '../actions/actionTypes';
 
 const { SHOW_ALERT, HIDE_ALERT } = actionTypes;
@@ -7,6 +16,15 @@ const initialState = {
   type: 'error',
   message: 'Something went wrong...',
 };
+
+/**
+ * Alert reducer for store
+ * @function alertReducer
+ * @param {object} state current state
+ * @param {string} type action type
+ * @param {any} payload values to update the current state
+ * @returns {object} current state
+ */
 
 const alertReducer = (state = initialState, { type, payload }) => {
   switch (type) {
