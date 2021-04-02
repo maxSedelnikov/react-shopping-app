@@ -14,7 +14,7 @@
  * @type {Object}
  */
 
-const rgxpNumber = /[(0-9)+.?(0-9)*]+/gim;
+const rgxpNumber = /^[1-9]\d*(\.\d+)?$/;
 const rgxpImageUrl = /(https?:\/\/.*\.(?:png|jpg|gif))/i;
 
 /**
