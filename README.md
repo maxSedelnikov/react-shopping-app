@@ -1,4 +1,4 @@
-## Introduction
+## Intro
 
 This is a test react shopping application.
 
