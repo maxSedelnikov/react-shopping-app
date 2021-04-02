@@ -4,10 +4,12 @@
  * @subcategory Cart
  * @module Setup
  * @see module:Requests
+ * @see firebaseDataBaseUrl
  */
 
 import axios from 'axios';
+import { firebaseDataBaseUrl } from '../../helpers/variables';
 
 export default axios.create({
-  baseURL: 'https://react-cart-79b85-default-rtdb.firebaseio.com/',
+  baseURL: firebaseDataBaseUrl,
 });
