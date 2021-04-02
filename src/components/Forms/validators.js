@@ -3,7 +3,7 @@
  * @category Application
  * @subcategory Helpers
  * @constant rgxpNumber
- * @type {Object} RegExp
+ * @type {Object}
  */
 
 /**
@@ -11,7 +11,7 @@
  * @category Application
  * @subcategory Helpers
  * @constant rgxpImageUrl
- * @type {Object} RegExp
+ * @type {Object}
  */
 
 const rgxpNumber = /[(0-9)+.?(0-9)*]+/gim;

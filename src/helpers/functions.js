@@ -7,6 +7,8 @@
  * @returns {number} Number of cart items
  */
 
+import { userIdStorageKey } from './variables';
+
 export const getNumberOfCartItems = (cart = []) => {
   return cart.reduce((sum, item) => {
     return sum + item.quantity;
@@ -63,5 +65,5 @@ export const generateUniqId = () => {
  */
 
 export const getUserId = () => {
-  return window.localStorage.getItem(process.env.REACT_APP_USER_STORAGE_KEY);
+  return window.localStorage.getItem(userIdStorageKey);
 };

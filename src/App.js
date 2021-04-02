@@ -2,12 +2,11 @@ import React, { useEffect } from 'react';
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 import Alert from './components/Alert/Alert';
 import { generateUniqId } from './helpers/functions';
+import { userIdStorageKey } from './helpers/variables';
 import Layout from './hoc/Layout/Layout';
 import About from './pages/About/About';
 import Cart from './pages/Cart/Cart';
 import Home from './pages/Home/Home';
-
-const { REACT_APP_USER_STORAGE_KEY } = process.env;
 
 /**
  * A container for the whole app
@@ -29,10 +28,10 @@ const App = () => {
    */
 
   useEffect(() => {
-    if (!window.localStorage.getItem(REACT_APP_USER_STORAGE_KEY)) {
+    if (!window.localStorage.getItem(userIdStorageKey)) {
       const userId = generateUniqId();
 
-      window.localStorage.setItem(REACT_APP_USER_STORAGE_KEY, userId);
+      window.localStorage.setItem(userIdStorageKey, userId);
     }
   }, []);
 

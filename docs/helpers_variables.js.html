@@ -7,7 +7,7 @@
   
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title> store/actions/actionTypes.js</title>
+  <title> helpers/variables.js</title>
 
   <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -80,7 +80,7 @@
             <div class="content">
                 <header class="page-title">
                     <p>Source</p>
-                    <h1>store/actions/actionTypes.js</h1>
+                    <h1>helpers/variables.js</h1>
                 </header>
                 
 
@@ -90,29 +90,23 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>/**
- * All actions availible in the app
- * @category Store
- * @subcategory Actions
- * @module ActionTypes
- * @see module:AlertActions
- * @see module:CartActions
+ * A key for user id set in localStorage
+ * @category Application
+ * @subcategory Helpers
+ * @constant userIdStorageKey
  */
 
-const actionTypes = {
-  GET_CART_ITEMS: 'GET_CART_ITEMS',
-  ADD_TO_CART: 'ADD_TO_CART',
-  REMOVE_FROM_CART: 'REMOVE_FROM_CART',
-  UPDATE_PRODUCT_IN_CART: 'UPDATE_PRODUCT_IN_CART',
-  CLEAR_CART: 'CLEAR_CART',
-  UPDATE_CART_INFO: 'UPDATE_CART_INFO',
-  START_LOADING: 'START_LOADING',
-  STOP_LOADING: 'STOP_LOADING',
-  SHOW_ALERT: 'SHOW_ALERT',
-  HIDE_ALERT: 'HIDE_ALERT',
-  SET_EMPTY_CART: 'SET_EMPTY_CART',
-};
+export const userIdStorageKey = 'rcuid';
 
-export default actionTypes;
+/**
+ * A link to database on firebase
+ * @category Application
+ * @subcategory Helpers
+ * @constant firebaseDataBaseUrl
+ */
+
+export const firebaseDataBaseUrl =
+  'https://react-cart-79b85-default-rtdb.firebaseio.com/';
 </code></pre>
         </article>
     </section>
