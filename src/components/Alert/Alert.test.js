@@ -6,7 +6,7 @@ import Alert from './Alert';
 jest.mock('react-redux');
 
 describe('Alert', () => {
-  it('shows alert', async () => {
+  it('shows alert', () => {
     useSelector.mockImplementation((cb) =>
       cb({
         alert: {
@@ -18,14 +18,14 @@ describe('Alert', () => {
     );
     const dispatch = jest.fn();
     useDispatch.mockReturnValue(dispatch);
-    const { getByTestId, queryByTestId } = render(<Alert />);
+    const { getByTestId } = render(<Alert />);
     const alert = getByTestId('alert');
 
     expect(alert).toHaveClass('active');
     expect(alert).toHaveTextContent('Some error appeared...');
   });
 
-  it('hides alert', async () => {
+  it('hides alert', () => {
     useSelector.mockImplementation((cb) =>
       cb({
         alert: {
@@ -37,7 +37,7 @@ describe('Alert', () => {
     );
     const dispatch = jest.fn();
     useDispatch.mockReturnValue(dispatch);
-    const { getByTestId, queryByTestId } = render(<Alert />);
+    const { getByTestId } = render(<Alert />);
     const alert = getByTestId('alert');
 
     expect(alert).not.toHaveClass('active');
