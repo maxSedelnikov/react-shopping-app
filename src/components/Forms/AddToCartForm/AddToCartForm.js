@@ -156,6 +156,7 @@ const AddToCartForm = () => {
         <Button
           disabled={!controls.isFormValid}
           onClick={() => createProductHandler()}
+          dataTestId='create-product-btn'
         >
           <span>add to cart</span>
           <AddToCartIcon width='20' height='20' />

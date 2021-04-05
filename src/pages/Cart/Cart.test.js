@@ -1,14 +1,11 @@
-import { render } from '@testing-library/react';
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import renderWithRedux from '../../testUtils/renderWithRedux.js';
 import Cart from './Cart';
-
-jest.mock('react-redux');
 
 describe('Cart', () => {
   it('starts loading cart', () => {
-    useSelector.mockImplementation((cb) =>
-      cb({
+    const { getByTestId } = renderWithRedux(<Cart />, {
+      initialState: {
         cart: {
           items: [],
           isEmptyCartSet: false,
@@ -16,32 +13,34 @@ describe('Cart', () => {
           totalSum: 0,
           loading: true,
         },
-      })
-    );
-    const dispatch = jest.fn();
-    useDispatch.mockReturnValue(dispatch);
-    const { getByTestId } = render(<Cart />);
+      },
+    });
     const loader = getByTestId('loader');
+    const numberOfItemsInCart = getByTestId('number-of-cart-items');
+    const cartSum = getByTestId('cart-sum');
+    const finishOrderBtn = getByTestId('finish-order-btn');
 
     expect(loader).toBeInTheDocument();
+    expect(numberOfItemsInCart).toHaveTextContent('0');
+    expect(cartSum).toHaveTextContent('0.00 $');
+    expect(finishOrderBtn).toBeDisabled();
   });
 
-  it('renders empty cart initially', () => {
-    useSelector.mockImplementation((cb) =>
-      cb({
-        cart: {
-          items: [],
-          isEmptyCartSet: true,
-          numberOfItems: 0,
-          totalSum: 0,
-          loading: false,
+  it('renders empty cart', () => {
+    const { getByTestId, getByText, queryByTestId } = renderWithRedux(
+      <Cart />,
+      {
+        initialState: {
+          cart: {
+            items: [],
+            isEmptyCartSet: true,
+            numberOfItems: 0,
+            totalSum: 0,
+            loading: false,
+          },
         },
-      })
+      }
     );
-    const dispatch = jest.fn();
-    useDispatch.mockReturnValue(dispatch);
-
-    const { getByText, getByTestId, queryByTestId } = render(<Cart />);
     const loader = queryByTestId('loader');
     const heading = getByText(/Your cart is empty/i);
     const numberOfItemsInCart = getByTestId('number-of-cart-items');
@@ -56,8 +55,8 @@ describe('Cart', () => {
   });
 
   it('renders cart with items', () => {
-    useSelector.mockImplementation((cb) =>
-      cb({
+    const { getByTestId, getAllByTestId } = renderWithRedux(<Cart />, {
+      initialState: {
         cart: {
           items: [
             {
@@ -68,17 +67,13 @@ describe('Cart', () => {
               quantity: 4,
             },
           ],
-          isEmptyCartSet: false,
+          isEmptyCartSet: true,
           numberOfItems: 0,
           totalSum: 0,
           loading: false,
         },
-      })
-    );
-    const dispatch = jest.fn();
-    useDispatch.mockReturnValue(dispatch);
-
-    const { getByTestId, getAllByTestId } = render(<Cart />);
+      },
+    });
     const listItems = getByTestId('cart-items-list');
     const items = getAllByTestId('cart-item');
     const numberOfItemsInCart = getByTestId('number-of-cart-items');

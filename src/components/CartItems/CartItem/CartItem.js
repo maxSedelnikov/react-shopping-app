@@ -161,14 +161,16 @@ const CartItem = ({ item, dataTestId }) => {
                 type='icon'
                 title='decrease quantity'
                 onClick={() => onDecreaseQantityHandler()}
+                dataTestId='decrease-quantity-btn'
               >
                 <DecreaseQntCounter width='20' height='20' />
               </Button>
-              <span>{quantity}</span>
+              <span data-testid='product-quantity'>{quantity}</span>
               <Button
                 type='icon'
                 title='increase quantity'
                 onClick={() => onIncreaseQantityHandler()}
+                dataTestId='increase-quantity-btn'
               >
                 <IncreaseQntIcon width='20' height='20' />
               </Button>
@@ -178,6 +180,7 @@ const CartItem = ({ item, dataTestId }) => {
             type='iconAbsolute'
             title='remove item'
             onClick={() => onRemoveHandler()}
+            dataTestId='remove-item-btn'
           >
             <RemoveItemIcon width='20' height='20' />
           </Button>
