@@ -96,13 +96,14 @@ const CartItems = ({ items, loading, isEmptyCartSet }) => {
           type='icon'
           title='clear cart'
           onClick={() => onClearCartHandler()}
+          dataTestId='clear-cart-btn'
         >
           <ClearCartIcon width='20' height='20' />
         </Button>
       </div>
-      <ul>
+      <ul data-testid='cart-items-list'>
         {items.map((item) => (
-          <CartItem key={item.id} item={item} />
+          <CartItem key={item.id} item={item} dataTestId='cart-item' />
         ))}
       </ul>
     </div>

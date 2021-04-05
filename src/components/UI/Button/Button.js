@@ -14,7 +14,7 @@ import classes from './Button.module.css';
  * @returns {jsx} button with text or icon
  */
 
-const Button = ({ type, disabled, title, onClick, children }) => {
+const Button = ({ type, dataTestId, disabled, title, onClick, children }) => {
   const cls = [classes.Button, classes[type]];
 
   return (
@@ -23,6 +23,7 @@ const Button = ({ type, disabled, title, onClick, children }) => {
       className={cls.join(' ')}
       title={title}
       disabled={disabled}
+      data-testid={dataTestId}
     >
       {children}
     </button>

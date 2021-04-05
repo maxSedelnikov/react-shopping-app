@@ -29,7 +29,7 @@ import classes from './CartItem.module.css';
  * @see getPriceToFixed
  */
 
-const CartItem = ({ item }) => {
+const CartItem = ({ item, dataTestId }) => {
   const { id, name, price, pictureUrl, quantity } = item;
   const modPrice = getPriceToFixed(price, 2);
   const [qantityLoader, setQuantityLoader] = useState(false);
@@ -142,7 +142,7 @@ const CartItem = ({ item }) => {
   };
 
   return (
-    <li className={classes.CartItem}>
+    <li className={classes.CartItem} data-testid={dataTestId}>
       <img
         className={classes.prdocutImg}
         src={pictureUrl}
