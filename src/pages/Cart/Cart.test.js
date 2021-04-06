@@ -1,10 +1,14 @@
-import { waitFor } from '@testing-library/dom';
+import { waitFor, waitForElementToBeRemoved } from '@testing-library/dom';
 import userEvent from '@testing-library/user-event';
 import React from 'react';
+import { generateUniqId } from '../../helpers/functions.js';
+import { userIdStorageKey } from '../../helpers/variables.js';
 import renderWithRedux from '../../testUtils/renderWithRedux.js';
 import Cart from './Cart';
 
 describe('Cart', () => {
+  window.localStorage.setItem(userIdStorageKey, 'testUser');
+
   it('adds a new product to cart, checks product was added and updates cart info', async () => {
     const {
       getByRole,
@@ -73,7 +77,7 @@ describe('Cart', () => {
         cart: {
           items: [
             {
-              id: '-MXGc7d2Qzg7TTDWgBX_',
+              id: generateUniqId(),
               name: 'test product',
               pictureUrl: 'https://ipsumimage.appspot.com/140x100.png',
               price: 5,
@@ -102,7 +106,7 @@ describe('Cart', () => {
     userEvent.click(increaseQntBtn);
 
     expect(getByTestId('quantity-loader')).toBeInTheDocument();
-    await waitFor(() => expect(queryByTestId('quantity-loader')).toBeNull());
+    await waitForElementToBeRemoved(queryByTestId('quantity-loader'));
     expect(getByTestId('product-quantity')).toHaveTextContent('11');
     expect(numberOfItemsInCart).toHaveTextContent('11');
     expect(cartSum).toHaveTextContent('55.00 $');
@@ -115,7 +119,7 @@ describe('Cart', () => {
         cart: {
           items: [
             {
-              id: '-MXGc7d2Qzg7TTDWgTv_',
+              id: generateUniqId(),
               name: 'test product',
               pictureUrl: 'https://ipsumimage.appspot.com/140x100.png',
               price: 5,
@@ -144,7 +148,7 @@ describe('Cart', () => {
     userEvent.click(decreaseBtn);
 
     expect(getByTestId('quantity-loader')).toBeInTheDocument();
-    await waitFor(() => expect(queryByTestId('quantity-loader')).toBeNull());
+    await waitForElementToBeRemoved(queryByTestId('quantity-loader'));
     expect(getByTestId('product-quantity')).toHaveTextContent('14');
     expect(numberOfItemsInCart).toHaveTextContent('14');
     expect(cartSum).toHaveTextContent('70.00 $');
@@ -158,7 +162,7 @@ describe('Cart', () => {
         cart: {
           items: [
             {
-              id: '-MXGc7d2Qzg7TTH7bTv_',
+              id: generateUniqId(),
               name: 'test product',
               pictureUrl: 'https://ipsumimage.appspot.com/140x100.png',
               price: 55,
@@ -186,7 +190,7 @@ describe('Cart', () => {
     userEvent.click(removeBtn);
 
     expect(window.confirm).toBeCalled();
-    await waitFor(() => expect(queryByTestId('cart-item')).toBeNull());
+    await waitForElementToBeRemoved(queryByTestId('cart-item'));
     expect(numberOfItemsInCart).toHaveTextContent('0');
     expect(cartSum).toHaveTextContent('0.00 $');
     expect(finishOrderBtn).toBeDisabled();
@@ -201,14 +205,14 @@ describe('Cart', () => {
           cart: {
             items: [
               {
-                id: '-MXGc7d2Qzg7TTKn5Tv_',
+                id: generateUniqId(),
                 name: 'test product',
                 pictureUrl: 'https://ipsumimage.appspot.com/140x100.png',
                 price: 100,
                 quantity: 5,
               },
               {
-                id: '-MXGc7d2Qzg7TTlV0Tv_',
+                id: generateUniqId(),
                 name: 'test product',
                 pictureUrl: 'https://ipsumimage.appspot.com/140x100.png',
                 price: 33,
@@ -239,7 +243,8 @@ describe('Cart', () => {
     userEvent.click(clearCartBtn);
 
     expect(window.confirm).toBeCalled();
-    await waitFor(() => expect(queryByTestId('cart-items-list')).toBeNull());
+
+    await waitForElementToBeRemoved(queryByTestId('cart-items-list'));
     expect(numberOfItemsInCart).toHaveTextContent('0');
     expect(cartSum).toHaveTextContent('0.00 $');
     expect(finishOrderBtn).toBeDisabled();

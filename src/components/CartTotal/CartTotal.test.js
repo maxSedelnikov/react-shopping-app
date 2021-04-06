@@ -1,6 +1,7 @@
 import { render } from '@testing-library/react';
 import React from 'react';
 import { useDispatch } from 'react-redux';
+import { generateUniqId } from '../../helpers/functions';
 import CartTotal from './CartTotal';
 
 jest.mock('react-redux');
@@ -9,7 +10,7 @@ describe('CartTotal', () => {
   const props = {
     items: [
       {
-        id: '-MXGc7d2QzP8Tf9WgBX_',
+        id: generateUniqId(),
         name: 'test',
         pictureUrl: 'https://ipsumimage.appspot.com/140x100.png',
         price: 5,
