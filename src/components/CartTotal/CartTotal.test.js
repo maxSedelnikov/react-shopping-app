@@ -7,13 +7,21 @@ jest.mock('react-redux');
 
 describe('CartTotal', () => {
   const props = {
-    items: [],
+    items: [
+      {
+        id: '-MXGc7d2QzP8Tf9WgBX_',
+        name: 'test',
+        pictureUrl: 'https://ipsumimage.appspot.com/140x100.png',
+        price: 5,
+        quantity: 10,
+      },
+    ],
   };
 
   it('renders initial cart info', () => {
     const dispatch = jest.fn();
     useDispatch.mockReturnValue(dispatch);
-    const { getByTestId } = render(<CartTotal items={props.items} />);
+    const { getByTestId } = render(<CartTotal items={[]} />);
     const numberOfItemsInCart = getByTestId('number-of-cart-items');
     const cartSum = getByTestId('cart-sum');
     const finishOrderBtn = getByTestId('finish-order-btn');
@@ -26,19 +34,7 @@ describe('CartTotal', () => {
   it('renders updated cart info', () => {
     const dispatch = jest.fn();
     useDispatch.mockReturnValue(dispatch);
-    const { getByTestId } = render(
-      <CartTotal
-        items={[
-          {
-            id: '-MXGc7d2QzP8TTDWgBX_',
-            name: 'test',
-            pictureUrl: 'https://test.img',
-            price: 5,
-            quantity: 10,
-          },
-        ]}
-      />
-    );
+    const { getByTestId } = render(<CartTotal items={props.items} />);
     const numberOfItemsInCart = getByTestId('number-of-cart-items');
     const cartSum = getByTestId('cart-sum');
     const finishOrderBtn = getByTestId('finish-order-btn');

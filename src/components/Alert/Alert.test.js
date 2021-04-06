@@ -1,10 +1,12 @@
+import { waitFor } from '@testing-library/dom';
+import { act } from '@testing-library/react';
 import React from 'react';
 import renderWithRedux from '../../testUtils/renderWithRedux';
 import Alert from './Alert';
 
 describe('Alert', () => {
-  it('shows alert', () => {
-    const { getByTestId } = renderWithRedux(<Alert />, {
+  it('shows and autohides the alert', async () => {
+    const { getByTestId, queryByTestId } = renderWithRedux(<Alert />, {
       initialState: {
         alert: {
           showAlert: true,
@@ -17,12 +19,11 @@ describe('Alert', () => {
 
     expect(alert).toHaveClass('active');
     expect(alert).toHaveTextContent(/Some error appeared/i);
-  });
 
-  it('hides alert', () => {
-    const { getByTestId } = renderWithRedux(<Alert />);
-    const alert = getByTestId('alert');
-
-    expect(alert).not.toHaveClass('active');
+    await act(() =>
+      waitFor(() => expect(queryByTestId('alert')).not.toHaveClass('active'), {
+        timeout: 3000,
+      })
+    );
   });
 });

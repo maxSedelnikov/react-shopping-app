@@ -1,4 +1,4 @@
-import { render, screen, waitFor } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import React from 'react';
 import { useDispatch } from 'react-redux';
@@ -41,6 +41,7 @@ describe('AddToCartForm', () => {
 
     userEvent.type(productNameInput, 'new');
     expect(getByText(invalidNameMsg)).toBeInTheDocument();
+
     userEvent.type(productNameInput, 'new product');
     expect(queryByText(invalidNameMsg)).toBeNull();
   });
@@ -53,9 +54,13 @@ describe('AddToCartForm', () => {
       name: labelImg,
     });
 
-    userEvent.type(productImageInput, 'https://image');
+    userEvent.type(productImageInput, 'https://ipsumimage.appspot.com/140x100');
     expect(getByText(invalidImgMsg)).toBeInTheDocument();
-    userEvent.type(productImageInput, 'https://image.png');
+
+    userEvent.type(
+      productImageInput,
+      'https://ipsumimage.appspot.com/140x100.png'
+    );
     expect(queryByText(invalidImgMsg)).toBeNull();
   });
 
@@ -69,11 +74,12 @@ describe('AddToCartForm', () => {
 
     userEvent.type(productPriceInput, '44.');
     expect(getByText(invalidPriceMsg)).toBeInTheDocument();
+
     userEvent.type(productPriceInput, '44.99');
     expect(queryByText(invalidPriceMsg)).toBeNull();
   });
 
-  it('checks form valid and send', async () => {
+  it('checks form valid', () => {
     const dispatch = jest.fn();
     useDispatch.mockReturnValue(dispatch);
     const { getByRole, getByTestId, queryByText } = render(<AddToCartForm />);
@@ -87,16 +93,15 @@ describe('AddToCartForm', () => {
     const createProductBtn = getByTestId('create-product-btn');
 
     userEvent.type(productNameInput, 'new product');
-    userEvent.type(productImageInput, 'https://image.png');
+    userEvent.type(
+      productImageInput,
+      'https://ipsumimage.appspot.com/140x100.png'
+    );
     userEvent.type(productPriceInput, '55.99');
+
     expect(queryByText(invalidNameMsg)).toBeNull();
     expect(queryByText(invalidImgMsg)).toBeNull();
     expect(queryByText(invalidPriceMsg)).toBeNull();
     expect(createProductBtn).not.toBeDisabled();
-    userEvent.click(createProductBtn);
-    await waitFor(() => expect(createProductBtn).toBeDisabled());
-    expect(productNameInput).toHaveDisplayValue('');
-    expect(productImageInput).toHaveDisplayValue('');
-    expect(productPriceInput).toHaveDisplayValue('');
   });
 });

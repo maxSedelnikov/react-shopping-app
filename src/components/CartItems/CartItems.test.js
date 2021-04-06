@@ -1,5 +1,4 @@
 import { render } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import CartItems from './CartItems';
@@ -12,7 +11,7 @@ describe('CartItems', () => {
       {
         id: '-MXGc7d2QzP8TTDWgBX_',
         name: 'test',
-        pictureUrl: 'https://test.img',
+        pictureUrl: 'https://ipsumimage.appspot.com/140x100.png',
         price: 2,
         quantity: 4,
       },
@@ -20,6 +19,30 @@ describe('CartItems', () => {
     loading: false,
     isEmptyCartSet: false,
   };
+
+  it('renders loader', () => {
+    const dispatch = jest.fn();
+    useDispatch.mockReturnValue(dispatch);
+    const { getByTestId } = render(
+      <CartItems items={[]} loading={true} isEmptyCartSet={false} />
+    );
+    const loader = getByTestId('loader');
+
+    expect(loader).toBeInTheDocument();
+  });
+
+  it('renders empty cart', () => {
+    const dispatch = jest.fn();
+    useDispatch.mockReturnValue(dispatch);
+    const { getByText, queryByTestId } = render(
+      <CartItems items={[]} loading={false} isEmptyCartSet={true} />
+    );
+    const loader = queryByTestId('loader');
+    const heading = getByText(/Your cart is empty/i);
+
+    expect(loader).toBeNull();
+    expect(heading).toBeInTheDocument();
+  });
 
   it('renders cart items', () => {
     const dispatch = jest.fn();
@@ -34,28 +57,7 @@ describe('CartItems', () => {
     const listItems = getByTestId('cart-items-list');
     const items = getAllByTestId('cart-item');
 
-    expect(listItems).toBeInTheDocument;
+    expect(listItems).toBeInTheDocument();
     expect(items).toHaveLength(1);
-  });
-
-  it('clears the cart', () => {
-    const dispatch = jest.fn();
-    useDispatch.mockReturnValue(dispatch);
-    window.confirm = jest.fn(() => true);
-    const { getByTestId, getByText, rerender } = render(
-      <CartItems
-        items={props.items}
-        loading={props.loading}
-        isEmptyCartSet={props.isEmptyCartSet}
-      />
-    );
-    const clearBtn = getByTestId('clear-cart-btn');
-    userEvent.click(clearBtn);
-
-    expect(window.confirm).toBeCalled();
-
-    rerender(<CartItems items={[]} loading={false} isEmptyCartSet={true} />);
-
-    expect(getByText(/Your cart is empty/i)).toBeInTheDocument();
   });
 });
