@@ -1,16 +1,14 @@
 import React, { useLayoutEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchCartItems } from '../../axios/cart/requests';
-import CartItems from '../../components/CartItems/CartItems';
-import CartTotal from '../../components/CartTotal/CartTotal';
-import AddToCartForm from '../../components/Forms/AddToCartForm/AddToCartForm';
-import Section from '../../hoc/Section/Section';
-import { showAlert } from '../../store/actions/alert';
-import {
-  loadCartItems,
-  startLoading,
-  stopLoading,
-} from '../../store/actions/cart';
+
+import { fetchCartItems } from 'axios/cart/requests';
+import CartItems from 'components/CartItems';
+import CartTotal from 'components/CartTotal';
+import AddToCartForm from 'components/Forms/AddToCartForm';
+import Section from 'hoc/Section';
+import { showAlert } from 'store/actions/alert';
+import { loadCartItems, startLoading, stopLoading } from 'store/actions/cart';
+
 import classes from './Cart.module.css';
 
 /**

@@ -1,12 +1,13 @@
 import React, { useEffect } from 'react';
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
-import Alert from './components/Alert/Alert';
-import { generateUniqId } from './helpers/functions';
-import { userIdStorageKey } from './helpers/variables';
-import Layout from './hoc/Layout/Layout';
-import About from './pages/About/About';
-import Cart from './pages/Cart/Cart';
-import Home from './pages/Home/Home';
+
+import Alert from 'components/Alert';
+import { generateUniqId } from 'helpers/functions';
+import { userIdStorageKey } from 'helpers/variables';
+import Layout from 'hoc/Layout';
+import About from 'pages/About';
+import Cart from 'pages/Cart';
+import Home from 'pages/Home';
 
 /**
  * A container for the whole app

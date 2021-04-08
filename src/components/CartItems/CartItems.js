@@ -1,13 +1,15 @@
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { ReactComponent as ClearCartIcon } from '../../assets/icons/cartIcons//clear.svg';
-import { fetchClearCart } from '../../axios/cart/requests';
-import { showAlert } from '../../store/actions/alert';
-import { clearCart, setEmptyCart } from '../../store/actions/cart';
-import EmptyCart from '../EmptyCart/EmptyCart';
-import Button from '../UI/Button/Button';
-import Loader from '../UI/Loader/Loader';
-import CartItem from './CartItem/CartItem';
+
+import { ReactComponent as ClearCartIcon } from 'assets/icons/cartIcons/clear.svg';
+import { fetchClearCart } from 'axios/cart/requests';
+import CartItem from 'components/CartItems/CartItem';
+import EmptyCart from 'components/EmptyCart';
+import Button from 'components/UI/Button';
+import Loader from 'components/UI/Loader';
+import { showAlert } from 'store/actions/alert';
+import { clearCart, setEmptyCart } from 'store/actions/cart';
+
 import classes from './CartItems.module.css';
 
 /**

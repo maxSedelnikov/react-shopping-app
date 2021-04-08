@@ -1,6 +1,8 @@
 import React from 'react';
-import Footer from '../../components/Footer/Footer';
-import NavBar from '../../components/NavBar/NavBar';
+
+import Footer from 'components/Footer';
+import NavBar from 'components/NavBar';
+
 import classes from './Layout.module.css';
 
 // layout wrapper for main companents

@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { ReactComponent as AddToCartIcon } from '../../../assets/icons/cartIcons//add.svg';
-import { fetchProductToCart } from '../../../axios/cart/requests';
-import Section from '../../../hoc/Section/Section';
-import { showAlert } from '../../../store/actions/alert';
-import { addToCart } from '../../../store/actions/cart';
-import Button from '../../UI/Button/Button';
-import Input from '../../UI/Input/Input';
+
+import { ReactComponent as AddToCartIcon } from 'assets/icons/cartIcons/add.svg';
+import { fetchProductToCart } from 'axios/cart/requests';
+import Button from 'components/UI/Button';
+import Input from 'components/UI/Input';
+import Section from 'hoc/Section';
+import { showAlert } from 'store/actions/alert';
+import { addToCart } from 'store/actions/cart';
+
 import classes from './AddToCartForm.module.css';
 import { initialFormControls, validateControl } from './formHelpers';
 

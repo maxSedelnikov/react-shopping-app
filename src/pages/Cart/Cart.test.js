@@ -1,9 +1,11 @@
 import { waitFor, waitForElementToBeRemoved } from '@testing-library/dom';
 import userEvent from '@testing-library/user-event';
 import React from 'react';
-import { generateUniqId } from '../../helpers/functions.js';
-import { userIdStorageKey } from '../../helpers/variables.js';
-import renderWithRedux from '../../testUtils/renderWithRedux.js';
+
+import { generateUniqId } from 'helpers/functions.js';
+import { userIdStorageKey } from 'helpers/variables.js';
+import renderWithRedux from 'testUtils/renderWithRedux.js';
+
 import Cart from './Cart';
 
 describe('Cart', () => {

@@ -1,19 +1,21 @@
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { ReactComponent as FinishOrderIcon } from '../../assets/icons/cartIcons//order.svg';
+
+import { ReactComponent as FinishOrderIcon } from 'assets/icons/cartIcons/order.svg';
+import Button from 'components/UI/Button';
 import {
   getCartSum,
   getNumberOfCartItems,
   getPriceToFixed,
-} from '../../helpers/functions';
-import Section from '../../hoc/Section/Section';
-import { showAlert } from '../../store/actions/alert';
-import { updateCartInfo } from '../../store/actions/cart';
-import Button from '../UI/Button/Button';
+} from 'helpers/functions';
+import Section from 'hoc/Section';
+import { showAlert } from 'store/actions/alert';
+import { updateCartInfo } from 'store/actions/cart';
+
 import classes from './CartTotal.module.css';
 
 /**
- * @category Application
+ * @category Applicationz
  * @subcategory Elements
  * @component CartTotal
  * @param {array} items cart items

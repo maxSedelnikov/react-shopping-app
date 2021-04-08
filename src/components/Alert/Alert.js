@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { hideAlert } from '../../store/actions/alert';
+
+import { hideAlert } from 'store/actions/alert';
+
 import classes from './Alert.module.css';
 
 /**
