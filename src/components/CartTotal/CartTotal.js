@@ -65,13 +65,17 @@ const CartTotal = ({ items }) => {
         <h3>Cart Info</h3>
         <p className={classes.totalItems}>
           <strong>Total items in cart :</strong>
-          <span>{numberOfItems}</span>
+          <span data-testid='number-of-cart-items'>{numberOfItems}</span>
         </p>
         <p className={classes.totalPrice}>
           <strong>Total price :</strong>
-          <span>{totalSumCut} $</span>
+          <span data-testid='cart-sum'>{totalSumCut} $</span>
         </p>
-        <Button disabled={numberOfItems === 0} onClick={finishOrder}>
+        <Button
+          disabled={numberOfItems === 0}
+          onClick={finishOrder}
+          dataTestId='finish-order-btn'
+        >
           <span>finish order</span>
           <FinishOrderIcon width='20' height='20' />
         </Button>

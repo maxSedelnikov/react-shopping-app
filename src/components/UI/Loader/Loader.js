@@ -11,7 +11,7 @@ import classes from './Loader.module.css';
 
 const Loader = () => {
   return (
-    <div className={classes.Loader}>
+    <div className={classes.Loader} data-testid='loader'>
       <div className={classes.Spinner}></div>
     </div>
   );

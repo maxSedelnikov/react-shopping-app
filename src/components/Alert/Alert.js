@@ -32,7 +32,7 @@ const Alert = () => {
   }, [dispatch, showAlert]);
 
   return (
-    <div className={cls.join(' ')}>
+    <div className={cls.join(' ')} data-testid='alert'>
       <span className={classes.Text}>{message}</span>
     </div>
   );

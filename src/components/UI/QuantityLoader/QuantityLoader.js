@@ -11,7 +11,7 @@ import classes from './QuantityLoader.module.css';
 
 const QuantityLoader = () => {
   return (
-    <div className={classes.QuantityLoader}>
+    <div className={classes.QuantityLoader} data-testid='quantity-loader'>
       <div></div>
       <div></div>
       <div></div>
