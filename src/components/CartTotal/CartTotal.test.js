@@ -1,7 +1,7 @@
 import { render } from '@testing-library/react';
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { generateUniqId } from '../../helpers/functions';
+import { generateUniqId } from 'helpers/functions';
 import CartTotal from './CartTotal';
 
 jest.mock('react-redux');

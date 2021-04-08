@@ -2,6 +2,7 @@ import { render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import React from 'react';
 import { useDispatch } from 'react-redux';
+
 import AddToCartForm from './AddToCartForm';
 
 jest.mock('react-redux');

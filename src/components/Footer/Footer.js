@@ -1,4 +1,5 @@
 import React from 'react';
+
 import classes from './Footer.module.css';
 
 /**
@@ -25,7 +26,7 @@ const Footer = () => {
         <li>
           <a
             href='https://t-do.ru/MaximSedelnikov'
-            target='_blanl'
+            target='_blank'
             rel='noreferrer'
           >
             My telegram

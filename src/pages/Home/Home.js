@@ -1,5 +1,7 @@
 import React from 'react';
-import Section from '../../hoc/Section/Section';
+
+import Section from 'hoc/Section';
+
 import classes from './Home.module.css';
 
 /**

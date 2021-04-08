@@ -5,7 +5,8 @@
  * @module Requests
  */
 
-import { getUserId } from '../../helpers/functions';
+import { getUserId } from 'helpers/functions';
+
 import axiosCart from './axios-cart';
 
 /**

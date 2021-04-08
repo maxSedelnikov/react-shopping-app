@@ -1,20 +1,19 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { ReactComponent as DecreaseQntCounter } from '../../../assets/icons/cartIcons/decrease.svg';
-import { ReactComponent as IncreaseQntIcon } from '../../../assets/icons/cartIcons/increase.svg';
-import { ReactComponent as RemoveItemIcon } from '../../../assets/icons/cartIcons/remove.svg';
+
+import { ReactComponent as DecreaseQntCounter } from 'assets/icons/cartIcons/decrease.svg';
+import { ReactComponent as IncreaseQntIcon } from 'assets/icons/cartIcons/increase.svg';
+import { ReactComponent as RemoveItemIcon } from 'assets/icons/cartIcons/remove.svg';
 import {
   fetchPoductUpdate,
   fetchProductRemoveFromCart,
-} from '../../../axios/cart/requests';
-import { getPriceToFixed } from '../../../helpers/functions';
-import { showAlert } from '../../../store/actions/alert';
-import {
-  removeProductFromCart,
-  updateProductInCart,
-} from '../../../store/actions/cart';
-import Button from '../../UI/Button/Button';
-import QuantityLoader from '../../UI/QuantityLoader/QuantityLoader';
+} from 'axios/cart/requests';
+import Button from 'components/UI/Button';
+import QuantityLoader from 'components/UI/QuantityLoader';
+import { getPriceToFixed } from 'helpers/functions';
+import { showAlert } from 'store/actions/alert';
+import { removeProductFromCart, updateProductInCart } from 'store/actions/cart';
+
 import classes from './CartItem.module.css';
 
 /**

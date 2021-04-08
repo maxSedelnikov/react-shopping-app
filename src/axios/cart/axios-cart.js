@@ -8,7 +8,7 @@
  */
 
 import axios from 'axios';
-import { firebaseDataBaseUrl } from '../../helpers/variables';
+import { firebaseDataBaseUrl } from 'helpers/variables';
 
 export default axios.create({
   baseURL: firebaseDataBaseUrl,

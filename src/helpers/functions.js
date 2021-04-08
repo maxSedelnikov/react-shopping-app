@@ -3,7 +3,7 @@
  * @category Application
  * @subcategory Helpers
  * @function getNumberOfCartItems
- * @param {array} cart - user's cart items
+ * @param { userIdStorageKey } cart - user's cart items
  * @returns {number} Number of cart items
  */
 

@@ -1,7 +1,9 @@
 import { waitFor } from '@testing-library/dom';
 import { act } from '@testing-library/react';
 import React from 'react';
-import renderWithRedux from '../../testUtils/renderWithRedux';
+
+import renderWithRedux from 'testUtils/renderWithRedux';
+
 import Alert from './Alert';
 
 describe('Alert', () => {
