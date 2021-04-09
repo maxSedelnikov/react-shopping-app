@@ -102,7 +102,7 @@ const AddToCartForm = () => {
       dispatch(
         showAlert({
           alertType: 'success',
-          alertMessage: 'Product added to your order',
+          alertMessage: 'Product added to your cart',
         })
       );
     } catch (error) {

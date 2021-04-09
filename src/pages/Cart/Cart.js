@@ -1,10 +1,11 @@
 import React, { useLayoutEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { fetchCartItems } from 'axios/cart/requests';
+import { fetchCartItems, fetchTestCartItems } from 'axios/cart/requests';
 import CartItems from 'components/CartItems';
 import CartTotal from 'components/CartTotal';
 import AddToCartForm from 'components/Forms/AddToCartForm';
+import Button from 'components/UI/Button';
 import Section from 'hoc/Section';
 import { showAlert } from 'store/actions/alert';
 import { loadCartItems, startLoading, stopLoading } from 'store/actions/cart';
@@ -66,6 +67,40 @@ const Cart = () => {
     if (items.length === 0 && !isEmptyCartSet) fetchData();
   }, [dispatch, items.length, isEmptyCartSet]);
 
+  /**
+   * A handler function for loading test cart items
+   * @memberof Cart
+   * @function onLoadTestCartHandler
+   * @see module:Requests~fetchTestCartItems
+   */
+
+  const onLoadTestCartHandler = async () => {
+    dispatch(startLoading());
+
+    try {
+      const response = await fetchTestCartItems();
+      const testCartItems = Object.values(response.data);
+      const testCartItemsReversed = testCartItems.reverse();
+
+      dispatch(loadCartItems(testCartItemsReversed));
+      dispatch(
+        showAlert({
+          alertType: 'success',
+          alertMessage: 'Test cart was loaded',
+        })
+      );
+    } catch (error) {
+      dispatch(
+        showAlert({
+          alertType: 'error',
+          alertMessage: `Could not fetch test cart items: ${error.message}`,
+        })
+      );
+    }
+
+    dispatch(stopLoading());
+  };
+
   return (
     <div className={classes.Cart}>
       <Section>
@@ -79,6 +114,11 @@ const Cart = () => {
         <div className={classes.sticky}>
           <CartTotal items={items} />
           <AddToCartForm />
+          {items.length === 0 ? (
+            <Button onClick={onLoadTestCartHandler} disabled={loading}>
+              load test cart
+            </Button>
+          ) : null}
         </div>
       </aside>
     </div>
