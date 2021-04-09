@@ -1,0 +1,9 @@
+.CartItemQuantity {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.CartItemQuantity span {
+  margin: 0 10px;
+}

@@ -49,6 +49,27 @@ export const fetchCartItems = async () => {
 };
 
 /**
+ * A function to fetch test cart items
+ * @function fetchTestCartItems
+ * @async
+ * @returns {Promise} Promise object respesents the response from the server
+ */
+
+export const fetchTestCartItems = async () => {
+  const response = await axiosCart.get('testCart/.json');
+  const testCartItems = {};
+
+  Object.keys(response.data).forEach((key) => {
+    testCartItems[key] = {
+      id: key,
+      ...response.data[key],
+    };
+  });
+
+  return axiosCart.put(withCredentials(), testCartItems);
+};
+
+/**
  * A function to add product to cart
  * @function fetchProductToCart
  * @param {object} product

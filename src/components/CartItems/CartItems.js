@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 
 import { ReactComponent as ClearCartIcon } from 'assets/icons/cartIcons/clear.svg';
 import { fetchClearCart } from 'axios/cart/requests';
-import CartItem from 'components/CartItems/CartItem';
+import CartItemsList from 'components/CartItems/CartItemsList';
 import EmptyCart from 'components/EmptyCart';
 import Button from 'components/UI/Button';
 import Loader from 'components/UI/Loader';
@@ -24,7 +24,7 @@ import classes from './CartItems.module.css';
  * @see Loader
  * @see EmptyCart
  * @see Button
- * @see CartItem
+ * @see CartItemsList
  */
 
 const CartItems = ({ items, loading, isEmptyCartSet }) => {
@@ -93,7 +93,7 @@ const CartItems = ({ items, loading, isEmptyCartSet }) => {
   return (
     <div className={classes.CartItems}>
       <div className={classes.title}>
-        <h3>Your order</h3>
+        <h3>Your cart</h3>
         <Button
           type='icon'
           title='clear cart'
@@ -103,11 +103,7 @@ const CartItems = ({ items, loading, isEmptyCartSet }) => {
           <ClearCartIcon width='20' height='20' />
         </Button>
       </div>
-      <ul data-testid='cart-items-list'>
-        {items.map((item) => (
-          <CartItem key={item.id} item={item} dataTestId='cart-item' />
-        ))}
-      </ul>
+      <CartItemsList items={items} />
     </div>
   );
 };

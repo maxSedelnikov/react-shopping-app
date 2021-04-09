@@ -7,9 +7,9 @@
   align-items: center;
 }
 
-.CartItems ul {
+/* .CartItems ul {
   display: grid;
-}
+} */
 
 .CartItems button {
   margin: 0;
