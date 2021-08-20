@@ -18,6 +18,10 @@ const Home = () => {
     <Section type='ContentCenter'>
       <div className={classes.Home}>
         <h1>Home Page</h1>
+        <p>Lorem ipsum dolor sit amet.</p>
+        <p>
+          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ex, eum.
+        </p>
       </div>
     </Section>
   );
