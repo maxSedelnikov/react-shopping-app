@@ -18,6 +18,10 @@ const About = () => {
     <Section type='ContentCenter'>
       <div className={classes.About}>
         <h1>About Page</h1>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam
+          quia consequatur error, voluptas modi a totam aut officiis quas animi!
+        </p>
       </div>
     </Section>
   );
